@@ -1,139 +1,252 @@
-FitPulse: Health Anomaly Detection System
+# FitPulse: Health Anomaly Detection System
 
-FitPulse is a health analytics dashboard that processes wearable fitness data (heart rate, steps, sleep), detects anomalies using Machine Learning, and provides AI-based wellness insights.
+## Overview
 
-Input Data
+FitPulse is a full-stack health analytics and anomaly detection platform built to analyze wearable fitness data such as heart rate, step count, sleep duration, and weight. The system detects abnormal health patterns using machine learning techniques, forecasts future trends using time-series models, and generates AI-based wellness insights through an interactive dashboard.
 
-The original dataset was taken from Kaggle:
-https://www.kaggle.com/datasets/arashnic/fitbit
+The application follows a modular client–server architecture:
+- Streamlit is used for the frontend visualization and interaction
+- FastAPI powers the backend for data processing, ML pipelines, forecasting, and report generation
 
-From this dataset, the following files were used:
+---
 
-minuteSleep_merged.csv
+## Key Features
 
-heartrate_seconds_merged.csv
+- Upload and preprocess wearable health datasets  
+- Feature engineering using rolling statistics  
+- Anomaly detection using:  
+  - Rule-based medical thresholds  
+  - DBSCAN clustering  
+- Time-series forecasting using Facebook Prophet  
+- Interactive health trend visualization  
+- AI-based personalized wellness recommendations  
+- CSV and PDF report generation  
+- Modular and scalable architecture  
 
-weightLogInfo_merged.csv
+---
 
-dailyActivity_merged.csv
+## Dataset Information
 
-Data Preparation Process
+**Dataset Source (Kaggle)**  
+[Fitbit Dataset](https://www.kaggle.com/datasets/arashnic/fitbit)
 
-Preprocessing was first applied on individual files.
+### Files Used
 
-An inner join was performed to combine heart rate and steps data, producing:
-clean_Dataset.csv
+- `minuteSleep_merged.csv` – Sleep duration and quality  
+- `heartrate_seconds_merged.csv` – Continuous heart rate readings  
+- `weightLogInfo_merged.csv` – Weight and BMI information  
+- `dailyActivity_merged.csv` – Daily steps and activity data  
 
-A left join was then applied with the remaining datasets (sleep and weight) to generate the final dataset:
-final_Dataset.csv
+---
 
-This final_Dataset.csv is used as the main input for the system.
+## Data Preparation Process
 
-Steps of Implementation
+1. Individual preprocessing on all datasets:  
+   - Timestamp normalization  
+   - Data type conversions  
+   - Missing value handling  
 
-Data Upload and Preprocessing
+2. Dataset merging:  
+   - Inner join between heart rate and steps → `clean_Dataset.csv`  
+   - Left join with sleep and weight datasets → `final_Dataset.csv`  
 
-Feature Engineering (rolling statistics)
+3. `final_Dataset.csv` is used as the primary input for the system.
 
-Anomaly Detection
+---
 
-Rule-based
+## System Workflow
 
-DBSCAN clustering
+1. Data upload and validation  
+2. Data preprocessing and normalization  
+3. Feature engineering using rolling mean and rolling standard deviation  
+4. Anomaly detection:  
+   - Rule-based threshold detection  
+   - DBSCAN clustering  
+5. Time-series forecasting using Prophet  
+6. Visualization of trends and anomalies  
+7. AI-based wellness advice generation  
+8. CSV and PDF report generation  
 
-Time-Series Forecasting using Prophet
+---
 
-Visualization of trends and distributions
+## System Architecture
 
-Report generation (CSV and PDF)
+User
+↓
+Streamlit Frontend
+↓ (REST API)
+FastAPI Backend
+↓
+ML & Analytics Engine
 
-AI-based wellness advice
 
-Tech Stack
+---
 
-Frontend: Streamlit, Plotly
-Backend: FastAPI, Uvicorn
-Data Science: Pandas, NumPy, Scikit-learn, Prophet, Matplotlib
-AI / LLM: OpenAI API
-Utilities: ReportLab, PyNgrok
+## Tech Stack
 
-Run
-Install Dependencies
+### Frontend
+- Streamlit  
+- Plotly  
 
+### Backend
+- FastAPI  
+- Uvicorn  
+
+### Data Science & Machine Learning
+- Pandas  
+- NumPy  
+- Scikit-learn  
+- Prophet  
+- Matplotlib  
+
+### AI / LLM
+- OpenAI API  
+
+### Utilities
+- ReportLab  
+- PyNgrok  
+
+---
+
+## Backend API Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| POST `/preprocess` | Data upload and preprocessing |
+| POST `/module2` | Feature engineering |
+| GET `/module3/prophet/{metric}` | Time-series forecasting |
+| GET `/module3/summary` | Anomaly summary |
+| GET `/module3/anomaly-with-recommendations` | AI-based health insights |
+| GET `/module3/dbscan` | DBSCAN clustering |
+| GET `/download-report` | Generate full PDF report |
+
+---
+
+## Dashboard Pages
+
+1. **Data Upload & Preprocessing**  
+   - Upload Fitbit dataset  
+   - Data validation and cleaning  
+   - Dataset overview and preview  
+
+   ![Data Upload Screenshot](screenshots/data_upload.png)
+
+2. **Feature Engineering**  
+   - Rolling averages and statistical features  
+   - TSFRESH feature importance visualization  
+
+   ![Feature Engineering Screenshot](screenshots/feature_engineering.png)
+
+3. **Health Trends**  
+   - Prophet-based forecasting  
+   - User-wise trend visualization  
+
+   ![Health Trends Screenshot](screenshots/health_trends.png)
+
+4. **Anomaly Detection**  
+   - Rule-based anomaly detection  
+   - AI-generated recommendations  
+
+   ![Anomaly Detection Screenshot](screenshots/anomaly_detection.png)
+
+5. **Distributions & Clustering**  
+   - Metric distributions  
+   - DBSCAN clustering visualization  
+
+   ![Clustering Screenshot](screenshots/clustering.png)
+
+6. **User Health Dashboard**  
+   - Raw vs rolling metric trends  
+   - Health score computation  
+   - Donut chart and anomaly table  
+
+   ![User Dashboard Screenshot](screenshots/user_dashboard.png)
+
+7. **Downloads**  
+   - Full system PDF report  
+   - Personalized user PDF report  
+
+   ![PDF Report Screenshot](screenshots/pdf_report.png)
+
+---
+
+## How to Run the Project
+
+### 1. Install Dependencies
+
+```bash
 pip install fastapi uvicorn pyngrok pandas numpy prophet scikit-learn matplotlib plotly streamlit requests openai reportlab
+```
 
-Start Backend
+### 2. Start Backend Server
 
+```bash
 uvicorn backend:app --port 8003
+```
 
-Start Frontend
+Backend runs at:
 
+```bash
+http://localhost:8003
+```
+
+### 3. Start Frontend Application
+```bash
 streamlit run app.py
+```
 
-Screenshots
+The Streamlit dashboard opens in the browser and communicates with the backend using REST APIs.
 
-The repository includes screenshots to visually demonstrate the working of the system and each major module.
 
-Screenshots cover:
+## Screenshots
 
-Data upload and preprocessing results
+The Screenshots/ directory contains screenshots captured during live execution of the application, illustrating the full workflow and user interface.
 
-Feature extraction and rolling statistics
+The screenshots demonstrate:
 
-Health trend forecasting (Prophet graphs)
+  - Data upload and preprocessing summary
 
-Anomaly detection results
+  - Feature extraction and TSFRESH insights
 
-User health dashboard (raw vs rolling charts, health score)
+  - Health trend visualization using Prophet
 
-DBSCAN clustering visualizations
+  - Anomaly detection summaries and severity classification
 
-Download and report generation screens
+  - User-specific health dashboards
 
-These screenshots help reviewers quickly understand the UI flow, analytics, and outputs without running the application.
+  - Health score donut charts and rolling averages
 
-Output Reports
+  - Metric distributions and DBSCAN clustering outputs
 
-FitPulse generates downloadable reports in both CSV and PDF formats.
+These images provide a visual walkthrough of the system’s functionality and analytics pipeline.
 
-CSV Reports
+## Output Reports
 
-Detailed anomaly records per user
+The Output_Report/ directory contains system-generated PDF reports created by the application.
 
-Includes:
-
-Date
-
-Metric affected
-
-Severity level
-
-AI-generated recommendation
-
-PDF Reports
-
-Two types of PDF reports are generated.
+### Available Reports
 
 Full Dashboard Report
 
-Dataset overview
+  - Dataset overview
 
-Sample records
+  - Sample records
 
-Anomaly summary
+  - Anomaly summary
 
-Visual analytics
+  - Visual analytics
 
-Health insights
+  - Health recommendations
 
-Personalized User Report
+Personalized User Dashboard Report
 
-User-specific health trends
+  - User-specific health metrics
 
-Health score breakdown
+  - Health score breakdown
 
-Detected anomalies
+  - Detected anomalies and recommendations
 
-Personalized AI-based wellness advice
+  - Recent activity summary
 
-All generated reports are included in the repository as sample outputs to validate system functionality.
+  - Trend and clustering visualizations
+
