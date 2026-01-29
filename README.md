@@ -71,13 +71,7 @@ The application follows a modular client–server architecture:
 
 ## System Architecture
 
-User
-↓
-Streamlit Frontend
-↓ (REST API)
-FastAPI Backend
-↓
-ML & Analytics Engine
+User -> Streamlit Frontend -> (REST API) -> FastAPI Backend ->ML & Analytics Engine
 
 
 ---
