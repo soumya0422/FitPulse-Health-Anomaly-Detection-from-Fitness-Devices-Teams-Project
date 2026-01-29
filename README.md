@@ -64,3 +64,73 @@ Start frontend:
 ```bash
 streamlit run app.py
 -------
+---
+## Screenshots
+
+The repository includes screenshots to visually demonstrate the working of the system and each major module.
+
+Screenshots cover:
+
+- Data upload and preprocessing results
+
+- Feature extraction and rolling statistics
+
+- Health trend forecasting (Prophet graphs)
+
+- Anomaly detection results
+
+- User health dashboard (raw vs rolling charts, health score)
+
+- DBSCAN clustering visualizations
+
+- Download and report generation screens
+
+These screenshots help reviewers quickly understand the UI flow, analytics, and outputs without running the application.
+
+---
+
+## Output Reports
+
+FitPulse generates downloadable reports in both CSV and PDF formats.
+
+CSV Reports
+
+- Detailed anomaly records per user
+
+- Includes:
+
+      - Date
+
+      - Metric affected
+
+      - Severity level
+
+      - AI-generated recommendation
+
+PDF Reports
+
+Two types of PDF reports are generated:
+
+1. Full Dashboard Report
+
+      - Dataset overview
+
+      - Sample records
+
+      - Anomaly summary
+
+      - Visual analytics
+
+      - Health insights
+
+2.Personalized User Report
+
+      - User-specific health trends
+
+      - Health score breakdown
+
+      - Detected anomalies
+
+      - Personalized AI-based wellness advice
+
+All generated reports are included in the repository as sample outputs to validate system functionality
