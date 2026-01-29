@@ -129,44 +129,33 @@ ML & Analytics Engine
    - Data validation and cleaning  
    - Dataset overview and preview  
 
-   ![Data Upload Screenshot](screenshots/data_upload.png)
-
 2. **Feature Engineering**  
    - Rolling averages and statistical features  
    - TSFRESH feature importance visualization  
-
-   ![Feature Engineering Screenshot](screenshots/feature_engineering.png)
 
 3. **Health Trends**  
    - Prophet-based forecasting  
    - User-wise trend visualization  
 
-   ![Health Trends Screenshot](screenshots/health_trends.png)
-
 4. **Anomaly Detection**  
    - Rule-based anomaly detection  
    - AI-generated recommendations  
 
-   ![Anomaly Detection Screenshot](screenshots/anomaly_detection.png)
 
 5. **Distributions & Clustering**  
    - Metric distributions  
    - DBSCAN clustering visualization  
 
-   ![Clustering Screenshot](screenshots/clustering.png)
 
 6. **User Health Dashboard**  
    - Raw vs rolling metric trends  
    - Health score computation  
    - Donut chart and anomaly table  
 
-   ![User Dashboard Screenshot](screenshots/user_dashboard.png)
 
 7. **Downloads**  
    - Full system PDF report  
    - Personalized user PDF report  
-
-   ![PDF Report Screenshot](screenshots/pdf_report.png)
 
 ---
 
